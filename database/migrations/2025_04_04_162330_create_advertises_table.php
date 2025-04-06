@@ -22,9 +22,9 @@ return new class extends Migration
             $table->text('description')->nullable();
 
             //  Relacionamentos
-            $table->foreignId(User::class);
-            $table->foreignId(Category::class);
-            $table->foreignId(State::class);
+            $table->foreignIdFor(User::class);
+            $table->foreignIdFor(Category::class);
+            $table->foreignIdFor(State::class);
             
             $table->timestamps();
         });
