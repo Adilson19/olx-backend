@@ -2,7 +2,9 @@
 
 use Illuminate\Support\Facades\Route;
 use Illuminate\Http\JsonResponse;
-
+use App\Http\Controllers\StatesController;
+use App\Http\Controllers\CategoriesController;
+use App\Http\Controllers\AdvertisesController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -15,6 +17,8 @@ use Illuminate\Http\JsonResponse;
 */
 
 Route::get('/ping', function():JsonResponse{return response()->json(['Pong' => true]);});
+Route::get('/states', [StatesController::class, 'index']);
+Route::get('/categories', [CategoriesController::class, 'index']);
 
 /*
     Rota de Utilidade
@@ -22,7 +26,7 @@ Route::get('/ping', function():JsonResponse{return response()->json(['Pong' => t
 
     - Rotas de Configuracao geral
     [x] - /states - Listar os estados
-    [] - /categories - Listar as categorias do sistema
+    [x] - /categories - Listar as categorias do sistema
 
     Rotas de Autenticacao * Autenticacao via TOKEN
     []- /user/signin --- Login
