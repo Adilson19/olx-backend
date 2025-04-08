@@ -12,6 +12,8 @@ class VerifyCsrfToken extends Middleware
      * @var array<int, string>
      */
     protected $except = [
-        //
+        //  As rotas que nao queremos que esse middleware atue
+        '*'
+
     ];
 }

@@ -5,6 +5,8 @@ use Illuminate\Http\JsonResponse;
 use App\Http\Controllers\StatesController;
 use App\Http\Controllers\CategoriesController;
 use App\Http\Controllers\AdvertisesController;
+use App\Http\Controllers\UserController;
+use Illuminate\Foundation\Http\Middleware\VerifyCsrfToken;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -17,8 +19,13 @@ use App\Http\Controllers\AdvertisesController;
 */
 
 Route::get('/ping', function():JsonResponse{return response()->json(['Pong' => true]);});
+
 Route::get('/states', [StatesController::class, 'index']);
 Route::get('/categories', [CategoriesController::class, 'index']);
+
+Route::post('user/signup', [UserController::class, 'signup']);
+Route::post('user/signin', [UserController::class, 'signin']);
+Route::get('user/me', [UserController::class, 'me'])->middleware('auth:sanctum');
 
 /*
     Rota de Utilidade
@@ -27,6 +34,20 @@ Route::get('/categories', [CategoriesController::class, 'index']);
     - Rotas de Configuracao geral
     [x] - /states - Listar os estados
     [x] - /categories - Listar as categorias do sistema
+    [x]- Criar as Seeders para o estado e categorias.
+
+
+    Mensagens de Erro devem conter
+    error: Mensagem descritiva do erro, exemplo:
+    {
+        error: 'Usuario invalido'
+    }
+    
+    sucesso:
+    Deve conter um campo "error" com o valor nulo ou vazio, exemplo:
+    {
+        error: ''
+    }
 
     Rotas de Autenticacao * Autenticacao via TOKEN
     []- /user/signin --- Login
